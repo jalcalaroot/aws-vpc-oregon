@@ -28,7 +28,7 @@ resource "aws_vpc" "main" {
 #Public Subnet 0
 resource "aws_subnet" "public-subnet-0" {
   vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-east-1a"
+  availability_zone = "us-west-2a"
   cidr_block        = "10.0.128.0/20"
   map_public_ip_on_launch = true
   tags = {
@@ -41,7 +41,7 @@ resource "aws_subnet" "public-subnet-0" {
 #Public Subnet 1
 resource "aws_subnet" "public-subnet-1" {
   vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-east-1b"
+  availability_zone = "us-west-2b"
   cidr_block        = "10.0.144.0/20"
   map_public_ip_on_launch = true
   tags = {
@@ -54,7 +54,7 @@ resource "aws_subnet" "public-subnet-1" {
 #Public Subnet 2
 resource "aws_subnet" "public-subnet-2" {
   vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-east-1c"
+  availability_zone = "us-west-2c"
   cidr_block        = "10.0.160.0/20"	
   map_public_ip_on_launch = true
   tags = {
@@ -114,7 +114,7 @@ resource "aws_route_table_association" "public-subnets-assoc-2" {
 #Public Subnet A0
 resource "aws_subnet" "private-subnet-A0" {
   vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-east-1a"
+  availability_zone = "us-west-2a"
   cidr_block        = "10.0.0.0/19"
   map_public_ip_on_launch = false
   tags = {
@@ -127,7 +127,7 @@ resource "aws_subnet" "private-subnet-A0" {
 #Public Subnet A1
 resource "aws_subnet" "private-subnet-A1" {
   vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-east-1b"
+  availability_zone = "us-west-2b"
   cidr_block        = "10.0.32.0/19"
   map_public_ip_on_launch = false
   tags = {
@@ -140,7 +140,7 @@ resource "aws_subnet" "private-subnet-A1" {
 #Public Subnet A2
 resource "aws_subnet" "private-subnet-A2" {
   vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-east-1c"
+  availability_zone = "us-west-2c"
   cidr_block        = "10.0.64.0/19"
   map_public_ip_on_launch = false
   tags = {
@@ -199,7 +199,7 @@ resource "aws_route_table_association" "private-subnets-assoc-2" {
 #Private Subnet B0
 resource "aws_subnet" "private-subnet-B0" {
   vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-east-1a"
+  availability_zone = "us-west-2a"
   cidr_block        = "10.0.192.0/21"
   map_public_ip_on_launch = false
   tags = {
@@ -212,7 +212,7 @@ resource "aws_subnet" "private-subnet-B0" {
 #Private Subnet B1
 resource "aws_subnet" "private-subnet-B1" {
   vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-east-1b"
+  availability_zone = "us-west-2b"
   cidr_block        = "10.0.200.0/21"
   map_public_ip_on_launch = false
   tags = {
@@ -225,7 +225,7 @@ resource "aws_subnet" "private-subnet-B1" {
 #Private Subnet B2
 resource "aws_subnet" "private-subnet-B2" {
   vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-east-1c"
+  availability_zone = "us-west-2c"
   cidr_block        = "10.0.208.0/21"
   map_public_ip_on_launch = false
   tags = {
