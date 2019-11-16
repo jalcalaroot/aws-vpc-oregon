@@ -11,7 +11,7 @@ provider "aws" {
 #-----------------------------------------------------------
 #VPC con 3 capas de subnets
 resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16" # que le permite contar con 65.536 IPs privadas.
+  cidr_block = "172.31.0.0/16" # que le permite contar con 65.536 IPs privadas.
   enable_dns_hostnames = true
   enable_dns_support = true
 
@@ -29,7 +29,7 @@ resource "aws_vpc" "main" {
 resource "aws_subnet" "public-subnet-0" {
   vpc_id            = "${aws_vpc.main.id}"
   availability_zone = "us-west-2a"
-  cidr_block        = "10.0.128.0/20"
+  cidr_block        = "172.31.80.0/20"
   map_public_ip_on_launch = true
   tags = {
     Name      = "public-subnet-0"
@@ -42,7 +42,7 @@ resource "aws_subnet" "public-subnet-0" {
 resource "aws_subnet" "public-subnet-1" {
   vpc_id            = "${aws_vpc.main.id}"
   availability_zone = "us-west-2b"
-  cidr_block        = "10.0.144.0/20"
+  cidr_block        = "172.31.16.0/20"
   map_public_ip_on_launch = true
   tags = {
     Name      = "public-subnet-1"
@@ -55,7 +55,7 @@ resource "aws_subnet" "public-subnet-1" {
 resource "aws_subnet" "public-subnet-2" {
   vpc_id            = "${aws_vpc.main.id}"
   availability_zone = "us-west-2c"
-  cidr_block        = "10.0.160.0/20"	
+  cidr_block        = "172.31.64.0/20"	
   map_public_ip_on_launch = true
   tags = {
     Name      = "public-subnet-2"
@@ -115,7 +115,7 @@ resource "aws_route_table_association" "public-subnets-assoc-2" {
 resource "aws_subnet" "private-subnet-A0" {
   vpc_id            = "${aws_vpc.main.id}"
   availability_zone = "us-west-2a"
-  cidr_block        = "10.0.0.0/19"
+  cidr_block        = "172.31.48.0/20"
   map_public_ip_on_launch = false
   tags = {
     Name      = "private-subnet-A0"
@@ -128,7 +128,7 @@ resource "aws_subnet" "private-subnet-A0" {
 resource "aws_subnet" "private-subnet-A1" {
   vpc_id            = "${aws_vpc.main.id}"
   availability_zone = "us-west-2b"
-  cidr_block        = "10.0.32.0/19"
+  cidr_block        = "172.31.32.0/20"
   map_public_ip_on_launch = false
   tags = {
     Name      = "private-subnet-A1"
@@ -141,7 +141,7 @@ resource "aws_subnet" "private-subnet-A1" {
 resource "aws_subnet" "private-subnet-A2" {
   vpc_id            = "${aws_vpc.main.id}"
   availability_zone = "us-west-2c"
-  cidr_block        = "10.0.64.0/19"
+  cidr_block        = "172.31.0.0/20"
   map_public_ip_on_launch = false
   tags = {
     Name      = "private-subnet-A2"
@@ -192,50 +192,6 @@ resource "aws_route_table_association" "private-subnets-assoc-2" {
 }
 
 #---------------------------------------------------------
-#..................
-#Private Subnets B = sin salida ni entrada (internet)
-#..................
-
-#Private Subnet B0
-resource "aws_subnet" "private-subnet-B0" {
-  vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-west-2a"
-  cidr_block        = "10.0.192.0/21"
-  map_public_ip_on_launch = false
-  tags = {
-    Name      = "private-subnet-B0"
-    env       = "terraform"
-    layer     = "private"
-  }
-}
-
-#Private Subnet B1
-resource "aws_subnet" "private-subnet-B1" {
-  vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-west-2b"
-  cidr_block        = "10.0.200.0/21"
-  map_public_ip_on_launch = false
-  tags = {
-    Name      = "private-subnet-B1"
-    env       = "terraform"
-    layer     = "private"
-  }
-}
-
-#Private Subnet B2
-resource "aws_subnet" "private-subnet-B2" {
-  vpc_id            = "${aws_vpc.main.id}"
-  availability_zone = "us-west-2c"
-  cidr_block        = "10.0.208.0/21"
-  map_public_ip_on_launch = false
-  tags = {
-    Name      = "private-subnet-B2"
-    env       = "terraform"
-    layer     = "private"
-  }
-}
-
-#-----------------------------------------------------------
 output "vpc_id" {
   value = "${aws_vpc.main.id}"
 }
@@ -245,8 +201,5 @@ output "public-subnet-0" {
 }
 output "private-subnet-A0" {
   value = "${aws_subnet.private-subnet-A0.id}"
-}
-output "private-subnet-B0" {
-  value = "${aws_subnet.private-subnet-B0.id}"
 }
 
